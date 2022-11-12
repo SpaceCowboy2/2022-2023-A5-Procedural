@@ -5,13 +5,14 @@ using UnityEngine.Events;
 
 public class Life : MonoBehaviour
 {
+    public bool isInvincible;
     public uint startLife;
+    public UnityEvent<uint> onDamageTaken;
 
     public uint currentLife { get; private set; }
-
-    public UnityEvent<float> onDamageTaken;
-
     public Func<Task> onDie;
+    
+    private bool isAlive = true;
 
     private void Start()
     {
@@ -20,6 +21,9 @@ public class Life : MonoBehaviour
 
     public void TakeDamage(uint damage)
     {
+        if(!isAlive || isInvincible) return;
+        if (damage > currentLife)
+            damage = currentLife;
         currentLife -= damage;
         onDamageTaken.Invoke(currentLife);
         if (currentLife == 0)
@@ -28,6 +32,7 @@ public class Life : MonoBehaviour
 
     private async void Die()
     {
+        isAlive = false;
         if(onDie != null)
             await onDie();
         Destroy(gameObject);

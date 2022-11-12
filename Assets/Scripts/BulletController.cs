@@ -13,9 +13,4 @@ public class BulletController : MonoBehaviour
     {
        movement.SetDirection(transform.up); 
     }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-       Destroy(gameObject); 
-    }
 }

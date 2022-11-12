@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 4423320176819635746}
   - component: {fileID: 1756855272893934513}
   - component: {fileID: -6948004646658768805}
+  - component: {fileID: 3172543913208597241}
+  - component: {fileID: 2924757937228013609}
+  - component: {fileID: -4304054284362474380}
   m_Layer: 8
   m_Name: Ennemy
   m_TagString: Untagged
@@ -75,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -414588121
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 2025124053, guid: f0361519cb1e22347a4a01a025eb231a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,7 +104,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.52, y: 0.5}
+  m_Offset: {x: 0.02, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
 --- !u!50 &4423320176819635746
@@ -150,3 +153,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
+--- !u!114 &3172543913208597241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419314047606676974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351b25fa2df146ff97e3be186db279ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLife: 1
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2924757937228013609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419314047606676974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cf2cc60b624f71a02e2805ed19b6c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageDelay: 1
+  damageOnTouch: 2
+--- !u!114 &-4304054284362474380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419314047606676974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888d3fdc8fcc4273be4210c733dd14aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageDelay: 0
+  damageOnTouch: 1

@@ -16,7 +16,7 @@ TagManager:
   - Enemies
   - Props
   - Spikes
-  - 
+  - Bullets
   - 
   - 
   - 
@@ -47,9 +47,6 @@ TagManager:
   - name: Spikes
     uniqueID: 3229714197
     locked: 0
-  - name: Props
-    uniqueID: 1517254871
-    locked: 0
   - name: Enemies
     uniqueID: 3880379175
     locked: 0
@@ -58,4 +55,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1028839893
+    locked: 0
+  - name: Props
+    uniqueID: 1517254871
     locked: 0

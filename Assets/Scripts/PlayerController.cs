@@ -1,28 +1,24 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform bullet;
-    public float fireDelay;
-
-    private bool isShooting;
     private Vector2 lastDirection;
-    private Transform bulletsParent;
-    private float lastShootTime;
+    private Life life;
     private Rigidbody2DMovement movement;
+    private Shooter[] shooters;
 
     private void Awake()
     {
+        shooters = GetComponentsInChildren<Shooter>();
+        life = GetComponent<Life>();
         movement = GetComponent<Rigidbody2DMovement>();
-        bulletsParent = new GameObject("Bullets").transform;
     }
 
     private void Start()
     {
-        GetComponent<Life>().onDie = OnDie;
+        life.onDie = OnDie;
     }
 
     public void OnMove(InputAction.CallbackContext input)
@@ -32,47 +28,51 @@ public class PlayerController : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext input)
     {
-        if (input.canceled)
+        if (input.performed)
         {
-            isShooting = false;
-            return;
+            var inputDirection = input.ReadValue<Vector2>();
+            if (inputDirection.sqrMagnitude <= 1)
+                transform.up = inputDirection;
+            foreach (var shooter in shooters)
+            {
+                shooter.StartShooting();
+            }
         }
-
-        if (!input.performed) return;
-        var inputDirection = input.ReadValue<Vector2>();
-        if(inputDirection.sqrMagnitude <= 1)
-            transform.up = inputDirection;
-        isShooting = true;
+        else if (input.canceled)
+        {
+            foreach (var shooter in shooters)
+            {
+                shooter.StopShooting();
+            }
+        }
     }
 
     public void OnAutoDie(InputAction.CallbackContext input)
     {
-        if(!input.performed)
+        if (!input.performed)
             return;
-        
-        GetComponent<Life>().TakeDamage(GetComponent<Life>().currentLife);
-    }
 
-    private void Update()
-    {
-        if (isShooting)
-            TryToShoot();
-    }
-
-    private void TryToShoot()
-    {
-        if (!(Time.time > lastShootTime + fireDelay)) return;
-        var myTransform = transform;
-        var bulletPosition = myTransform.position + myTransform.up;
-        var newBullet = Instantiate(bullet, bulletPosition, Quaternion.identity, bulletsParent);
-        newBullet.up = transform.up;
-        lastShootTime = Time.time;
+        life.TakeDamage(life.currentLife);
     }
 
     private async Task OnDie()
     {
+        GetComponent<PlayerInput>().SwitchCurrentActionMap("UI");
+        movement.SetDirection(Vector2.zero);
         Debug.Log("Start dying");
         await Task.Delay(1000);
-        Debug.Log("Stopped dying");
+        Debug.Log("Dead");
+    }
+
+    public async void ChangeColor(uint lifePoint)
+    {
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        var oldColor = spriteRenderer.color;
+        spriteRenderer.color = Color.red;
+        await Task.Delay(16);
+        while (life.isInvincible)
+            await Task.Delay(16);
+        spriteRenderer.color = oldColor;
+
     }
 }

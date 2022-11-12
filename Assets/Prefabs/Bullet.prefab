@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 8776810948865090951}
   - component: {fileID: 2793912637471948836}
   - component: {fileID: 8265584397746025040}
-  m_Layer: 6
+  - component: {fileID: 5429550406906552165}
+  - component: {fileID: 1701375715172481772}
+  m_Layer: 11
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +100,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -150,3 +152,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+--- !u!114 &5429550406906552165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485737571027047290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888d3fdc8fcc4273be4210c733dd14aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageDelay: 0
+  damageOnTouch: 1
+--- !u!114 &1701375715172481772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485737571027047290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351b25fa2df146ff97e3be186db279ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLife: 1
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
