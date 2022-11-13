@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
     public Vector2Int roomSize;
-    private List<RoomController> neighbours;
+    private RoomController[] neighbours;
 
     private RoomManager roomManager;
 
@@ -15,10 +14,6 @@ public class RoomController : MonoBehaviour
 
     private void Start()
     {
-        var rooms = roomManager.GetNeighbours(this);
-        foreach (var room in rooms)
-        {
-            Debug.Log($"I’m {name} : {room.transform.position}");
-        }
+        neighbours = roomManager.GetNeighbours(this);
     }
 }
