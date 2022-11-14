@@ -14,6 +14,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d3dacd00ce441dc8c61d528a2193088158400/b0/0c56ee95/Bounds.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/43fe838307084e3092535d818329483f1f800/b7/0315bf33/Collider2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8f738bb377d543fda57f89a0dd057bb220a18/8a/bbe4b0fc/Collision2D.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="vj3d1o4q" />
@@ -37,6 +38,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds\Procedural.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="D:\Code\IIM\2022-2023\A5\Procedural\Builds" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.12f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\Code\IIM\2022-2023\A5\Procedural -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
@@ -80,7 +89,9 @@
       <workItem from="1668283404250" duration="4373000" />
       <workItem from="1668346109312" duration="1360000" />
       <workItem from="1668358366644" duration="1822000" />
-      <workItem from="1668369246759" duration="3560000" />
+      <workItem from="1668369246759" duration="3611000" />
+      <workItem from="1668429149443" duration="613000" />
+      <workItem from="1668431518908" duration="8095000" />
     </task>
     <servers />
   </component>

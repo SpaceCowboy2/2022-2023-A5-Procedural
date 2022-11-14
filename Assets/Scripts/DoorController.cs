@@ -54,7 +54,7 @@ public class DoorController : MonoBehaviour
 
         var connectedTransform = connectedDoor.transform;
         Instantiate(openDoor, connectedTransform.position, connectedTransform.rotation, connectedTransform.parent);
-        Disappear(connectedDoor.GetComponent<SpriteRenderer>());
+        Disappear(connectedDoor);
     }
 
     private async void Disappear(SpriteRenderer toDisappear)

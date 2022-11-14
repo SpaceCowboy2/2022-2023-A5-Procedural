@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         var oldColor = spriteRenderer.color;
         spriteRenderer.color = Color.red;
         await Task.Delay(16);
-        while (life.isInvincible)
+        while (life.isInvincible && life.currentLife > 0)
             await Task.Delay(16);
         spriteRenderer.color = oldColor;
 

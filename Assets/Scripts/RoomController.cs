@@ -5,15 +5,22 @@ public class RoomController : MonoBehaviour
     public Vector2Int roomSize;
     private RoomController[] neighbours;
 
-    private RoomManager roomManager;
+    private RoomEnemiesManager enemiesManager;
+    private LevelManager levelManager;
 
     private void Awake()
     {
-        roomManager = GetComponentInParent<RoomManager>();
+        enemiesManager = GetComponentInChildren<RoomEnemiesManager>();
+        levelManager = GetComponentInParent<LevelManager>();
     }
 
     private void Start()
     {
-        neighbours = roomManager.GetNeighbours(this);
+        neighbours = levelManager.GetNeighbours(this);
+    }
+
+    public void SetRoomActive(bool isActive)
+    {
+        enemiesManager.SetAllEnemiesInRoomActive(isActive);
     }
 }
