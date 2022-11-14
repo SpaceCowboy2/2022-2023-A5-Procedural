@@ -5,7 +5,7 @@ public class DoorController : MonoBehaviour
 {
     public DoorController connectedDoor { get; private set; }
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         var grid = GetComponentInParent<Grid>();
         var allDoors = grid.GetComponentsInChildren<DoorController>();

@@ -61,9 +61,9 @@ public class LockedDoor : DoorController
         }
     }
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         connectedLockedDoor = connectedDoor as LockedDoor;
     }
 }
