@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour
     private Life life;
     private Rigidbody2DMovement movement;
     private Shooter[] shooters;
+    private MeleeAttack meleeAttack;
 
     private void Awake()
     {
         shooters = GetComponentsInChildren<Shooter>();
         life = GetComponent<Life>();
         movement = GetComponent<Rigidbody2DMovement>();
+        meleeAttack = GetComponent<MeleeAttack>();
     }
 
     private void Start()
@@ -44,6 +46,14 @@ public class PlayerController : MonoBehaviour
             {
                 shooter.StopShooting();
             }
+        }
+    }
+
+    public void OnMeleeAttack(InputAction.CallbackContext input)
+    {
+        if (input.performed)
+        {
+            meleeAttack.Attack();
         }
     }
 
