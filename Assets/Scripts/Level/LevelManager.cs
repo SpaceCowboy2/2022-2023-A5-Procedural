@@ -24,12 +24,16 @@ public class LevelManager : MonoBehaviour
 
         IEnumerator WaitForBlend()
         {
+            RoomController roomController = newCam.VirtualCameraGameObject.GetComponentInParent<RoomController>();
+
+            DrawRoom(roomController);
+
             if (cinemachineBrain.IsBlending)
             {
                 yield return new WaitForSeconds(cinemachineBrain.ActiveBlend.Duration);
             }
 
-            SetActiveRoom(newCam.VirtualCameraGameObject.GetComponentInParent<RoomController>());
+            SetActiveRoom(roomController);
         }
     }
 
@@ -51,5 +55,10 @@ public class LevelManager : MonoBehaviour
             activeRoom.SetRoomActive(false);
         newActiveRoom.SetRoomActive(true);
         activeRoom = newActiveRoom;
+    }
+
+    private void DrawRoom(RoomController roomToDraw)
+    {
+        roomToDraw.DrawRoom();
     }
 }
