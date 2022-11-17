@@ -4,13 +4,7 @@ using UnityEngine;
 
 public abstract class Room : MonoBehaviour
 {
-    protected virtual void GenerateRoom()
-    {
+    protected abstract void GenerateRoom();
 
-    }
-
-    protected virtual void Randomize()
-    {
-
-    }
+    protected abstract void Randomize();
 }
