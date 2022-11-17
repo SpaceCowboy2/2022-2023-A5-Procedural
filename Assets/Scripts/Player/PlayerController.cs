@@ -25,7 +25,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext input)
     {
-        movement.SetDirection(input.ReadValue<Vector2>());
+        var inputDirection = input.ReadValue<Vector2>();
+        movement.SetDirection(inputDirection);
+
+        if (input.performed)
+        {
+            movement.SetRotation(inputDirection);
+        }
     }
 
     public void OnShoot(InputAction.CallbackContext input)
@@ -35,6 +41,7 @@ public class PlayerController : MonoBehaviour
             var inputDirection = input.ReadValue<Vector2>();
             if (inputDirection.sqrMagnitude <= 1)
                 transform.up = inputDirection;
+            movement.fixRotation = true;
             foreach (var shooter in shooters)
             {
                 shooter.StartShooting();
@@ -42,6 +49,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (input.canceled)
         {
+            movement.fixRotation = false;
             foreach (var shooter in shooters)
             {
                 shooter.StopShooting();
