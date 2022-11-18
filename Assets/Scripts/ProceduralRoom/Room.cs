@@ -37,8 +37,8 @@ public abstract class Room : MonoBehaviour
                     result.Add(new Vector3(-9.5f, -0.5f, 0));
                     break;
                 default:
-                    return null;
                     Debug.LogError("There is no door in your room !");
+                    return null;
             }
         }
 
