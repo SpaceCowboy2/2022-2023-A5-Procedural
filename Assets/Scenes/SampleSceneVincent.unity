@@ -183,6 +183,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4c5583d9d74fb4a21a8f26e8f44a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &41065418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 41065420}
+  - component: {fileID: 41065422}
+  - component: {fileID: 41065421}
+  m_Layer: 0
+  m_Name: Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &41065420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41065418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.734028, y: 1.4834143, z: -0.062285233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &41065421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41065418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ead9ab9a1f0a744b370c921aa521af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleList:
+  - PuzzleType: 
+    gameobjectsToInstantiate:
+    - {fileID: 7143052517036596304, guid: 11b8838a4c6ce77419cc01543c075555, type: 3}
+    - {fileID: 7143052517036596304, guid: 11b8838a4c6ce77419cc01543c075555, type: 3}
+--- !u!114 &41065422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41065418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2375d55a6d50f4a85b5c09273d9595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 0}
+  _tilemap: {fileID: 1954381532}
+  _tileBase: {fileID: 0}
 --- !u!1 &62701777 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6388184427874494322, guid: 5218b1326248c8c4b93b5d5335035873, type: 3}
@@ -4138,6 +4203,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3475515730257596950, guid: 9ac65334982292941a505bfb0e37b7e4, type: 3}
   m_PrefabInstance: {fileID: 1816296933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &1954381532 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 1042053158459415092, guid: e319c4ae182576942959d35845d20251, type: 3}
+  m_PrefabInstance: {fileID: 5155899502344072467}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2036146359
 GameObject:
