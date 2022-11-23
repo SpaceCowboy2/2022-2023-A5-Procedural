@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2DMovement movement;
     private Shooter[] shooters;
     private MeleeAttack meleeAttack;
+    public GameObject PrefBomb;
+    private float CooldownBomb = 0;
+    public float Cooldown = 1;
+
 
     private void Awake()
     {
@@ -34,43 +38,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnShoot(InputAction.CallbackContext input)
+    public void Bomb()
     {
-        if (input.performed)
-        {
-            var inputDirection = input.ReadValue<Vector2>();
-            if (inputDirection.sqrMagnitude <= 1)
-                transform.up = inputDirection;
-            movement.fixRotation = true;
-            foreach (var shooter in shooters)
-            {
-                shooter.StartShooting();
-            }
-        }
-        else if (input.canceled)
-        {
-            movement.fixRotation = false;
-            foreach (var shooter in shooters)
-            {
-                shooter.StopShooting();
-            }
-        }
+       
+            Instantiate(PrefBomb, transform.position, Quaternion.identity);
+        
     }
 
     public void OnMeleeAttack(InputAction.CallbackContext input)
     {
-        if (input.performed)
+        /*if (input.performed)
         {
             meleeAttack.Attack();
-        }
+        }*/
     }
 
     public void OnAutoDie(InputAction.CallbackContext input)
     {
-        if (!input.performed)
+        /*if (!input.performed)
             return;
 
-        life.TakeDamage(life.currentLife);
+        life.TakeDamage(life.currentLife);*/
     }
 
     private IEnumerator OnDie()
@@ -95,6 +83,15 @@ public class PlayerController : MonoBehaviour
             while (life.isInvincible && life.currentLife > 0)
                 yield return null;
             spriteRenderer.color = oldColor;
+        }
+    }
+    private void Update()
+    {
+        CooldownBomb -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space) && CooldownBomb <= 0)
+        {
+            Bomb();
+            CooldownBomb = PrefBomb.GetComponent<Bomb>().Countdown;
         }
     }
 }
