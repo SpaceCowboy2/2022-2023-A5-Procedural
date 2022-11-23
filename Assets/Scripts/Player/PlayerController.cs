@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastDirection;
     private Life life;
     private Rigidbody2DMovement movement;
+    private Rigidbody2D Rb;
     private Shooter[] shooters;
     private MeleeAttack meleeAttack;
     public GameObject PrefBomb;
     private float CooldownBomb = 0;
     public float Cooldown = 1;
+    public float PushPower = 1;
 
 
     private void Awake()
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
         life = GetComponent<Life>();
         movement = GetComponent<Rigidbody2DMovement>();
         meleeAttack = GetComponent<MeleeAttack>();
+        Rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -92,6 +95,35 @@ public class PlayerController : MonoBehaviour
         {
             Bomb();
             CooldownBomb = PrefBomb.GetComponent<Bomb>().Countdown;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Moving") 
+        {
+            Rigidbody2D box = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (box)
+            {
+                Vector3 pushDirection = new Vector3(Rb.velocity.normalized.x, Rb.velocity.normalized.y, 0);
+                box.velocity = pushDirection * PushPower;
+
+            }
+        }
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Moving") 
+        {
+            Rigidbody2D box = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (box)
+            {
+                
+                box.velocity = Vector3.zero;
+
+            }
         }
     }
 }

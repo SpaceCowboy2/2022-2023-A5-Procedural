@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Door
   - DestroyWall
+  - Moving
+  - Target
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - Mirror
   - HiddenOnMiniMap
   - Obstacles
-  - 
+  - Button
   - 
   - 
   - 

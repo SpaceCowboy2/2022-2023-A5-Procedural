@@ -25,7 +25,7 @@ public class LockedDoor : DoorController
         Open(lastKey);
     }
 
-    private void Open(Pickup usedKey)
+    public void Open(Pickup usedKey)
     {
         Destroy(usedKey.gameObject);
         Disappear();
