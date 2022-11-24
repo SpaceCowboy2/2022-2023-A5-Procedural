@@ -271,10 +271,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 6463628766531727801, guid: f6f1131eeae13f542a56a2604913e5b4, type: 3}
+  mirrorRoomPrefab: {fileID: 0}
+  secretRoomPrefab: {fileID: 0}
+  hubPrefab: {fileID: 0}
   DLASpawnRadius: 20
   DLAWalkerStep: 1
   AggregationDistance: 2
-  MaxRoomCount: 10
+  MaxRoomCount: 50
 --- !u!4 &1478352230
 Transform:
   m_ObjectHideFlags: 0

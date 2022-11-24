@@ -22,6 +22,9 @@ public enum DoorPos
 public class MapGenerator : MonoBehaviour
 {
     public GameObject roomPrefab;
+    public GameObject mirrorRoomPrefab;
+    public GameObject secretRoomPrefab;
+    public GameObject hubPrefab;
 
     [Header("DLA")] public float DLASpawnRadius;
     public float DLAWalkerStep;
@@ -67,18 +70,20 @@ public class MapGenerator : MonoBehaviour
 
     void GenerateRooms()
     {
+        int secretRoomIndex = Random.Range(1, _createdRoomPositions.Count + 1);
+
         for (int i = 0; i < _createdRoomPositions.Count; i++)
         {
             Instantiate(roomPrefab, _createdRoomPositions[i], Quaternion.identity);
 
             Vector3 mirrorPos = new Vector3(-_createdRoomPositions[i].x, _createdRoomPositions[i].y, 0);
-            Instantiate(roomPrefab, mirrorPos, Quaternion.identity);
+            Instantiate(mirrorRoomPrefab, mirrorPos, Quaternion.identity);
         }
     }
 
     void RandomWalk()
     {
-        _createdRoomPositions.Add(transform.position);
+        Instantiate(hubPrefab, transform.position, Quaternion.identity);
         Vector3 previousPos = transform.position;
         DLARoom previousRoom = new DLARoom(new Vector2Int(-1, 0));
         rooms.Add(previousRoom);
