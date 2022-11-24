@@ -9,6 +9,7 @@ TagManager:
   - Moving
   - Target
   - Button
+  - Reset
   layers:
   - Default
   - TransparentFX
