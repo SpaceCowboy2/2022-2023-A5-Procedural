@@ -35,10 +35,12 @@ public class MapGenerator : MonoBehaviour
     private Vector2 roomDimensions;
 
     private List<DLARoom> rooms = new List<DLARoom>();
+    private List<DLARoom> mirrorRooms = new List<DLARoom>();
 
     void Start()
     {
         roomDimensions = roomPrefab.transform.localScale;
+        mirrorRooms.Add(new DLARoom(Vector2Int.zero));
 
         RandomWalk();
         GenerateRooms();
@@ -74,18 +76,28 @@ public class MapGenerator : MonoBehaviour
 
         for (int i = 0; i < _createdRoomPositions.Count; i++)
         {
-            Instantiate(roomPrefab, _createdRoomPositions[i], Quaternion.identity);
+            var room = Instantiate(roomPrefab, _createdRoomPositions[i], Quaternion.identity);
+            rooms[i].SetObject(room);
+
+
 
             Vector3 mirrorPos = new Vector3(-_createdRoomPositions[i].x, _createdRoomPositions[i].y, 0);
-            Instantiate(mirrorRoomPrefab, mirrorPos, Quaternion.identity);
+            var mirrorRoomObject = Instantiate(mirrorRoomPrefab, mirrorPos, Quaternion.identity);
+
+            DLARoom mirrorRoom = new DLARoom(Vector2Int.zero);
+            mirrorRoom.SetObject(mirrorRoomObject);
+            mirrorRoom.SetMirrorDoors(rooms[i].GetDoors());
+            mirrorRooms.Add(mirrorRoom);
+
         }
     }
 
     void RandomWalk()
     {
-        Instantiate(hubPrefab, transform.position, Quaternion.identity);
+        GameObject roomObject = Instantiate(hubPrefab, transform.position, Quaternion.identity);
         Vector3 previousPos = transform.position;
         DLARoom previousRoom = new DLARoom(new Vector2Int(-1, 0));
+        previousRoom.SetObject(roomObject);
         rooms.Add(previousRoom);
 
         for (int i = 0; i < MaxRoomCount; i++)
