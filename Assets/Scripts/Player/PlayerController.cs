@@ -7,8 +7,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastDirection;
     private Life life;
     private Rigidbody2DMovement movement;
+    private Rigidbody2D Rb;
     private Shooter[] shooters;
     private MeleeAttack meleeAttack;
+    public GameObject PrefBomb;
+    private float CooldownBomb = 0;
+    public float Cooldown = 1;
+    public float PushPower = 1;
+
 
     private void Awake()
     {
@@ -16,6 +22,7 @@ public class PlayerController : MonoBehaviour
         life = GetComponent<Life>();
         movement = GetComponent<Rigidbody2DMovement>();
         meleeAttack = GetComponent<MeleeAttack>();
+        Rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -34,43 +41,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnShoot(InputAction.CallbackContext input)
+    public void Bomb()
     {
-        if (input.performed)
-        {
-            var inputDirection = input.ReadValue<Vector2>();
-            if (inputDirection.sqrMagnitude <= 1)
-                transform.up = inputDirection;
-            movement.fixRotation = true;
-            foreach (var shooter in shooters)
-            {
-                shooter.StartShooting();
-            }
-        }
-        else if (input.canceled)
-        {
-            movement.fixRotation = false;
-            foreach (var shooter in shooters)
-            {
-                shooter.StopShooting();
-            }
-        }
+       
+            Instantiate(PrefBomb, transform.position, Quaternion.identity);
+        
     }
 
     public void OnMeleeAttack(InputAction.CallbackContext input)
     {
-        if (input.performed)
+        /*if (input.performed)
         {
             meleeAttack.Attack();
-        }
+        }*/
     }
 
     public void OnAutoDie(InputAction.CallbackContext input)
     {
-        if (!input.performed)
+        /*if (!input.performed)
             return;
 
-        life.TakeDamage(life.currentLife);
+        life.TakeDamage(life.currentLife);*/
     }
 
     private IEnumerator OnDie()
@@ -95,6 +86,44 @@ public class PlayerController : MonoBehaviour
             while (life.isInvincible && life.currentLife > 0)
                 yield return null;
             spriteRenderer.color = oldColor;
+        }
+    }
+    private void Update()
+    {
+        CooldownBomb -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space) && CooldownBomb <= 0)
+        {
+            Bomb();
+            CooldownBomb = PrefBomb.GetComponent<Bomb>().Countdown;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Moving") 
+        {
+            Rigidbody2D box = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (box)
+            {
+                Vector3 pushDirection = new Vector3(Rb.velocity.normalized.x, Rb.velocity.normalized.y, 0);
+                box.velocity = pushDirection * PushPower;
+
+            }
+        }
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Moving") 
+        {
+            Rigidbody2D box = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (box)
+            {
+                
+                box.velocity = Vector3.zero;
+
+            }
         }
     }
 }

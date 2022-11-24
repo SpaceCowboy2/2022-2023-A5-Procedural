@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Door
+  - DestroyWall
+  - Moving
+  - Target
+  - Button
+  - Reset
   layers:
   - Default
   - TransparentFX
@@ -21,8 +26,8 @@ TagManager:
   - Rooms
   - Mirror
   - HiddenOnMiniMap
-  - 
-  - 
+  - Obstacles
+  - Button
   - 
   - 
   - 
