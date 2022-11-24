@@ -41,7 +41,7 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        roomDimensions = roomPrefab.transform.localScale;
+        roomDimensions = new Vector3(20, 10, 0);
         mirrorRooms.Add(new DLARoom(Vector2Int.zero));
 
         RandomWalk();
@@ -105,8 +105,15 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < MaxRoomCount; i++)
         {
             Vector2 randomWorldDir = Random.insideUnitCircle;
-            Vector2Int randomDir =
-                new Vector2Int(MathF.Sign(randomWorldDir.x) > 0 ? 1 : 0, MathF.Sign(randomWorldDir.y));
+            Vector2Int randomDir;
+            if (i == 0)
+            {
+                randomDir = new Vector2Int(1, 0);
+            }
+            else
+            {
+                randomDir = new Vector2Int(MathF.Sign(randomWorldDir.x) > 0 ? 1 : 0, MathF.Sign(randomWorldDir.y));
+            }
             if (randomDir.x == 1) randomDir.y = 0;
 
             Vector3 roomWorldPos = previousPos + new Vector3(roomDimensions.x * randomDir.x, roomDimensions.y * randomDir.y);

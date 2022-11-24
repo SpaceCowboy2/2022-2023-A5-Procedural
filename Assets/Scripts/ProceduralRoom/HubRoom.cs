@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class HubRoom : Room
 {
@@ -8,7 +9,8 @@ public class HubRoom : Room
     private List<Vector3> doorsPos= new List<Vector3>();
     public GameObject LockedDoor;
     public GameObject OpenDoor;
-    
+    [SerializeField] private Tilemap _tilemap = null;
+
     protected override void GenerateRoom()
     {
         
@@ -30,5 +32,12 @@ public class HubRoom : Room
             Instantiate(OpenDoor, doorsPos[i], Quaternion.identity);
         }
     
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3Int gameobjectPos = new Vector3Int(_tilemap.size.x, _tilemap.size.y, 0);
+
+        //Gizmos.DrawCube(transform.position, gameobjectPos);
     }
 }

@@ -10,9 +10,8 @@ public class ClassicRoom : Room
 
     private RoomController _controller;
 
-
     [SerializeField] private Tilemap _tilemap = null;
-    [SerializeField] private TileBase _tileBase = null;
+    [SerializeField] private TileBase _wallTile = null;
     [SerializeField] private GameObject _enemyParent = null;
 
     private void Start()
@@ -110,5 +109,12 @@ public class ClassicRoom : Room
                 return true;
         }
         return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3Int gameobjectPos = new Vector3Int(_tilemap.size.x, _tilemap.size.y, 0);
+
+        //Gizmos.DrawCube(transform.position, gameobjectPos);
     }
 }
