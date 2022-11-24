@@ -9,8 +9,7 @@ public class RoomController : MonoBehaviour
     private RoomEnemiesManager enemiesManager;
     private LevelManager levelManager;
 
-    [SerializeField]
-    private List<GameObject> objectToActiveOnFirstVisit = new List<GameObject>();
+    public List<GameObject> objectToActiveOnFirstVisit = new List<GameObject>();
     [SerializeField]
     private List<GameObject> objectToApplyWallsOnFirstVisit = new List<GameObject>();
 
@@ -24,14 +23,7 @@ public class RoomController : MonoBehaviour
     {
         enemiesManager = GetComponentInChildren<RoomEnemiesManager>();
         levelManager = GetComponentInParent<LevelManager>();
-        if (objectToActiveOnFirstVisit.Count > 0)
-        {
-            foreach (GameObject _object in objectToActiveOnFirstVisit)
-            {
-                _object.SetActive(false);
-            }
-        }
-
+        
         if (objectToApplyWallsOnFirstVisit.Count > 0)
         {
             foreach (GameObject _object in objectToApplyWallsOnFirstVisit)
@@ -56,6 +48,7 @@ public class RoomController : MonoBehaviour
 
     public void SetRoomActive(bool isActive)
     {
+        Debug.Log(transform.name);
         enemiesManager.SetAllEnemiesInRoomActive(isActive);
     }
 

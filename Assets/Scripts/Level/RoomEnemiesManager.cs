@@ -7,6 +7,7 @@ public class RoomEnemiesManager : MonoBehaviour
 
     public void SetAllEnemiesInRoomActive(bool isActive)
     {
+        Debug.Log("Enabled : " + enemiesInRoom.Count);
         foreach(var enemy in enemiesInRoom)
         {
             enemy.enabled = isActive;
@@ -21,5 +22,6 @@ public class RoomEnemiesManager : MonoBehaviour
     public void RemoveEnemyFromRoom(EnemyController enemyToRemove)
     {
         enemiesInRoom.Remove(enemyToRemove);
+        Debug.Log("Remove : " + enemiesInRoom.Count);
     }
 }
