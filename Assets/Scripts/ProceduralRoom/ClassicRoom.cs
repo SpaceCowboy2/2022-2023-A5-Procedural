@@ -8,19 +8,29 @@ public class ClassicRoom : Room
     private int _nbMinEnemy = 1, _nbMaxEnemy = 5;
     private int _nbMinDecor = 0, _nbMaxDecor = 3;
 
+    private RoomController _controller;
+
+
     [SerializeField] private Tilemap _tilemap = null;
     [SerializeField] private TileBase _tileBase = null;
-    
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            InstantiateObjectsAtPos(transform.position, GetPuzzleList());
-            InstantiateObjectsAtPos(transform.position, GetDecorList());
-            InstantiateObjectsAtPos(transform.position, GetEnemyList());
+    [SerializeField] private GameObject _enemyParent = null;
 
+    private void Start()
+    {
+        _controller = GetComponent<RoomController>();
+        InstantiateObjectsAtPos(transform.position, GetPuzzleList());
+        InstantiateObjectsAtPos(transform.position, GetDecorList());
+        InstantiateObjectsAtPos(transform.position, GetEnemyList(), true);
+
+        if (_controller.objectToActiveOnFirstVisit.Count > 0)
+        {
+            foreach (GameObject _object in _controller.objectToActiveOnFirstVisit)
+            {
+                _object.SetActive(false);
+            }
         }
     }
+
     protected override void GenerateRoom()
     {
 
@@ -64,7 +74,7 @@ public class ClassicRoom : Room
         return enemyList;
     }
 
-    public void InstantiateObjectsAtPos(Vector3 roomPos, List<GameObject> objectsToInstantiate)
+    public void InstantiateObjectsAtPos(Vector3 roomPos, List<GameObject> objectsToInstantiate, bool isEnemy = false)
     {
         Vector3Int tilePosition = _tilemap.WorldToCell(roomPos);
 
@@ -79,7 +89,14 @@ public class ClassicRoom : Room
                 gameobjectPos = new Vector3Int(Random.Range(-(_tilemap.size.x / 2) + tilePosition.x + 1, (_tilemap.size.x / 2) + tilePosition.x), 
                     Random.Range(-(_tilemap.size.y / 2) + tilePosition.y + 1, (_tilemap.size.y / 2) + tilePosition.y));
             }
-            Instantiate(objectsToInstantiate[i], _tilemap.CellToWorld(gameobjectPos), Quaternion.identity);
+
+            if (!isEnemy)
+                Instantiate(objectsToInstantiate[i], _tilemap.CellToWorld(gameobjectPos), Quaternion.identity);
+            else
+            {
+                Instantiate(objectsToInstantiate[i], _tilemap.CellToWorld(gameobjectPos), Quaternion.identity, _enemyParent.transform);
+               
+            }
         }
     }
 
@@ -89,7 +106,7 @@ public class ClassicRoom : Room
 
         foreach (Collider hit in hitColliders)
         {
-            if (hit.gameObject.CompareTag("Door") || hit.gameObject.CompareTag("Puzzle") || hit.gameObject.CompareTag("Decor") || hit.gameObject.CompareTag("Enemy"))
+            if (hit.gameObject.CompareTag("Door") || hit.gameObject.CompareTag("Puzzle") || hit.gameObject.CompareTag("Decor") || hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Props"))
                 return true;
         }
         return false;
