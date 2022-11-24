@@ -1569,6 +1569,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ac65334982292941a505bfb0e37b7e4, type: 3}
+--- !u!1 &732857083909886329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3475515730257596945, guid: 9ac65334982292941a505bfb0e37b7e4, type: 3}
+  m_PrefabInstance: {fileID: 4183882012963799912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &390205191910083888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732857083909886329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2375d55a6d50f4a85b5c09273d9595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 0}
+  _tilemap: {fileID: 732857084307107942}
+  _tileBase: {fileID: 0}
+--- !u!1839735485 &732857084307107942 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 3475515730934002446, guid: 9ac65334982292941a505bfb0e37b7e4, type: 3}
+  m_PrefabInstance: {fileID: 4183882012963799912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &732857085733428382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3475515732226105334, guid: 9ac65334982292941a505bfb0e37b7e4, type: 3}
